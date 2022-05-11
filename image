@@ -1,0 +1,66 @@
+Download an image:
+Home Docker Kubernetes LXD Ansible Terraform OpenStack Virtualization Linux HowTo
+Cloud images (cloud-images)
+virtualizationubuntu
+Get images
+https://docs.openstack.org/image-guide/obtain-images.html
+
+Ubuntu
+https://cloud-images.ubuntu.com/releases/
+https://cloud-images.ubuntu.com/minimal/releases/
+
+# 22.04 (jammy)
+https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img
+# 20.04 (focal)
+https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64-disk-kvm.img
+# 18.04 (bionic)
+https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
+# 16.04 (xenial)
+https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
+
+Get image version
+
+cat /etc/cloud/build.info
+Ubuntu minimal cloud images
+https://wiki.ubuntu.com/Minimal?_ga=2.234110487.847966267.1636368030-2121923539.1598520245
+# 22.04 (jammy minimal)
+https://cloud-images.ubuntu.com/minimal/daily/jammy/current/jammy-minimal-cloudimg-amd64.img
+
+# allow root login
+cp /home/ubuntu/.ssh/authorized_keys /root/.ssh/authorized_keys
+Windows
+https://cloudbase.it/windows-cloud-images/#download
+https://www.linuxsysadmins.com/create-windows-server-image-for-openstack/
+
+RedHat
+https://access.redhat.com/downloads/content/479/ver=/rhel---8/8.1/x86_64/product-software
+https://access.redhat.com/downloads/content/69/ver=/rhel---7/7.7/x86_64/product-software
+
+CentOS
+https://cloud.centos.org/centos/
+
+# latest
+https://cloud.centos.org/centos/8/x86_64/images/ [CentOS-8-GenericCloud-*.x86_64.qcow2]
+
+Fedora Atomic
+https://mirrors.dotsrc.org/fedora-buffet/alt/atomic/stable/?C=M&O=D
+
+CirrOS
+
+# credentials
+user: cirros
+pass: gocubsgo
+http://download.cirros-cloud.net/
+
+GRML
+https://download.grml.org/grml64-small_2021.07.iso
+
+# direct download
+http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
+http://download.cirros-cloud.net/0.5.1/cirros-0.5.1-x86_64-disk.img
+
+# convert qcaw to raw
+qemu-img convert -O raw -f qcow2 image-name.img image-name.raw
+
+#Command for creating image for using in openstack cloud:
+openstack image create --public --disk-format raw --container-format bare --file file.raw [Display Name]
