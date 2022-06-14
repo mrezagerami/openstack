@@ -1,0 +1,4 @@
+We want to check our compute resources include CPU,Memory and Disk in openstack with two filesystem LVM and Ceph
+This script run in an inventory server and use openstack client to extract CPU and RAM, for extracting Disk information just use ssh and use vgdisplay and lsblk
+(you can check details)
+
