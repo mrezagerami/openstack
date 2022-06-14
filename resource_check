@@ -1,4 +1,12 @@
 We want to check our compute resources include CPU,Memory and Disk in openstack with two filesystem LVM and Ceph
 This script run in an inventory server and use openstack client to extract CPU and RAM, for extracting Disk information just use ssh and use vgdisplay and lsblk
-(you can check details)
+(you can check details in code)
+
+for run with crontab, login with the user of your provisioner and then run this command and insert to line:
+(I use full PATH)
+first you must authenticate with the openstack user and then run your ansible code.
+
+crontab -u [Your User] -e
+
+*/1 * * * *   if ! out1=`. /opt/inventory-engine/ansible/roles/resource-check/files/openrc_prep.sh && /usr/bin/ansible-playbook -i /opt/inventory-engine/ansible/roles/resource-check/inventory /opt/inventory-engine/ansible/roles/resource-check/tasks/inventory_info.yml`; then echo $out1; fi
 
