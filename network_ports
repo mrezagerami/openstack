@@ -1,0 +1,22 @@
+#~/bin/bash
+source ~/Downloads/infra-openrc.sh
+#net.ext.dev = NETWORK_ID
+
+openstack port list --network NETWORK_ID > NETWORK_X_ports.txt
+cat NETWORK_X_ports.txt | awk '{print $2}' > NETWORK_X_ports_ID.txt
+input="NETWORK_X_ports_ID.txt"
+while read line; do
+  echo "Port ID = " $line
+  projectid=`openstack port show $line | grep project_id  | awk '{print $4}'`
+  echo "Project ID= " $projectid
+  if [ -z "$projectid"  ]
+  then
+	  echo $line >> port_without_project.txt
+  else
+	  project_name=`openstack project show $projectid  | grep name | awk '{print  $4}'` 
+	  echo "Project Name = " $project_name
+	  echo $project_name >> project_list.txt
+	  echo "$line   $project_name" >> port_project.txt
+  fi
+  
+done < $input
